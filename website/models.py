@@ -64,7 +64,7 @@ class Thesis(models.Model):
     published_date = models.DateField(null=True, blank=True)
     title = models.CharField(max_length=255)
     author = models.CharField(max_length=255)
-    pdf_file = models.FileField(upload_to='thesis_pdf')
+    pdf_file = models.FileField(upload_to='thesis_pdf', max_length=256)
 
     def __str__(self):
         return(f"{self.title} by {self.author}")
