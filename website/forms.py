@@ -1,6 +1,5 @@
 from typing import Any
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
 from .models import CustomUser, Thesis
 from django import forms
 
@@ -38,17 +37,17 @@ class ThesisForm(forms.ModelForm):
         super(ThesisForm, self).__init__(*args, **kwargs)
         self.fields['published_date'].widget.attrs['class'] = 'form-control'
         self.fields['published_date'].widget.attrs['placeholder'] = 'Published Date'
-        self.fields['published_date'].label = ''
+        self.fields['published_date'].label = 'Published Date:'
 
         self.fields['title'].widget.attrs['class'] = 'form-control'
         self.fields['title'].widget.attrs['placeholder'] = 'Title'
-        self.fields['title'].label = ''
+        self.fields['title'].label = 'Title:'
 
         self.fields['author'].widget.attrs['class'] = 'form-control'
         self.fields['author'].widget.attrs['placeholder'] = 'Author'
-        self.fields['author'].label = ''
+        self.fields['author'].label = 'Author:'
 
         self.fields['pdf_file'].widget.attrs['class'] = 'form-control'
         self.fields['pdf_file'].widget.attrs['placeholder'] = 'PDF'
-        self.fields['pdf_file'].label = ''
-        
+        self.fields['pdf_file'].label = 'Thesis PDF File:'
+

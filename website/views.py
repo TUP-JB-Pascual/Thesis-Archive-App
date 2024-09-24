@@ -3,6 +3,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.http import FileResponse
 from django.core.files.storage import FileSystemStorage
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.decorators.clickjacking import xframe_options_exempt
+from django.urls import reverse_lazy
 
 from .forms import RegisterUserForm, ThesisForm
 from .models import Thesis
@@ -53,20 +56,31 @@ def register_user(request):
         context['form'] = form
     return render(request, 'register.html', context)
 
-def publish(request):
-    context = {}
-    if request.method == 'POST':
-        form = ThesisForm(request.POST, request.FILES)
-        if form.is_valid():
-            messages.success(request, "Upload Successful.")
-            form.save()
-            return redirect('publish')
-    else:
-        form = ThesisForm()
-        context['form'] = form
-    return render(request, 'publish.html', context)
+class ThesisPublishView(CreateView):
+    model = Thesis
+    template_name = 'thesis_publish.html'
+    form_class = ThesisForm
+    #messages.success(request, "Upload Successful.")
 
-def thesis_list(request):
-    thesis_list = Thesis.objects.all()
-    context = {'thesis_list': thesis_list}
-    return render(request, 'thesis_list.html', context)
+class ThesisListView(ListView):
+    model = Thesis
+    template_name = 'thesis_list.html'
+
+class XFrameOptionsExemptMixin:
+    @xframe_options_exempt
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
+class ThesisDetailView(XFrameOptionsExemptMixin, DetailView):
+    model = Thesis
+    template_name = 'thesis_detail.html'
+    
+class ThesisUpdateView(UpdateView):
+    model = Thesis
+    template_name = 'thesis_update.html'
+    form_class = ThesisForm
+    
+class ThesisDeleteView(DeleteView):
+    model = Thesis
+    template_name = 'thesis_delete.html'
+    success_url = reverse_lazy('thesis_list')

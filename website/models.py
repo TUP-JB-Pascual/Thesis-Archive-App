@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils import timezone
+from django.urls import reverse
 
 class CustomUserManager(BaseUserManager):
     def _create_user(self, email, password, first_name, last_name, **extra_fields):
@@ -62,9 +63,14 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 class Thesis(models.Model):
     upload_date = models.DateTimeField(auto_now_add=True)
     published_date = models.DateField(null=True, blank=True)
-    title = models.CharField(max_length=255)
+    title = models.TextField(max_length=255)
     author = models.CharField(max_length=255)
     pdf_file = models.FileField(upload_to='thesis_pdf', max_length=256)
+    # visits = models.IntegerField(default=0)
 
     def __str__(self):
         return(f"{self.title} by {self.author}")
+    
+    def get_absolute_url(self):
+        return reverse('thesis_detail', kwargs= {'pk': self.id})
+

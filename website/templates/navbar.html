@@ -11,7 +11,10 @@
             <a class="nav-link" href="{% url 'logout' %}">Logout</a>
           </li>
           <li class="nav-item"></li>
-            <a class="nav-link" href="{% url 'publish' %}">Publish Thesis</a>
+            <a class="nav-link" href="{% url 'thesis_list' %}">Thesis List</a>
+          </li>
+          <li class="nav-item"></li>
+            <a class="nav-link" href="{% url 'thesis_publish' %}">Publish Thesis</a>
           </li>
           {% else %}
           <li class="nav-item">

@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_cleanup.apps.CleanupConfig',
 
     #apps
     'website',
@@ -122,11 +123,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATICFILES_DIRS = [BASE_DIR / 'website/static',]
-#STATICFILES_DIRS = [BASE_DIR / "website/static", "/var/www/static/",]
+#STATICFILES_DIRS = [BASE_DIR / 'website/static',]
+STATICFILES_DIRS = [BASE_DIR / "website/static", "/var/www/static/",]
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT = BASE_DIR / 'static'
 #STATIC_ROOT = "/var/www/example.com/static/"
 # Change "example.com" to webpage name
 
@@ -138,3 +140,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 MEDIA_URL = '/media/'
+
+X_FRAME_OPTIONS = 'ALLOW-FROM http://127.0.0.1:8000/'

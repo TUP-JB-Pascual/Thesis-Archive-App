@@ -17,8 +17,7 @@
                         <td>{{ thesis.title }}</td>
                         <td>{{ thesis.author }}</td>
                         <td>
-                            <a href="{{ thesis.pdf_file.url }}" class="btn btn-primary btn-sm" target="_blank">Open</a>
-                            {{ thesis.pdf_file }}
+                            <a href="{% url 'thesis_detail' thesis.pk %}" class="btn btn-primary btn-sm">Open on Page</a>                    
                         </td>
                     </tr>
                 {% endfor %}
