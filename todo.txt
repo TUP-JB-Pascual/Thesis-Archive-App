@@ -1,0 +1,12 @@
+TO DO LIST
+
+1. Finish Upload
+3. Create Admin Side for Website
+4. Create Visitor View
+5. Create Profile Page
+6. Create Censor Pages
+7. Show Abstract Only
+8. Create Visit Counter
+
+LAST: LAUNCH WEBSITE
+FINAL: DEBUG LAUNCHED WEBSITE

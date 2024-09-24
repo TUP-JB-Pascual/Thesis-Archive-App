@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="col-md-6 offset-md-3">
+        <h1>Thesis List</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>File</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for thesis in thesis_list %}
+                    <tr>
+                        <td>{{ thesis.title }}</td>
+                        <td>{{ thesis.author }}</td>
+                        <td>
+                            <a href="{{ thesis.pdf_file.url }}" class="btn btn-primary btn-sm" target="_blank">Open</a>
+                            {{ thesis.pdf_file }}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+{% endblock %}
